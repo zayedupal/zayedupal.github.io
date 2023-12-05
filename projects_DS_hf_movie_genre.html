@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Zayed - Google Ads Dashboard</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="index.html" class="logo">Hugging Face Competition: Movie Genre Prediction</a>
+				</header>
+
+				<!-- Content -->
+				<section>
+					<header class="main">
+						<h1>Hugging Face Competition: Movie Genre Prediction</h1>
+					</header>
+
+					<p>Back in mid-2023, I took on the challenge of an NLP competition on Hugging Face and 
+						was honored to secure the second place! This post is my way of sharing the journey, 
+						from the initial process to the final code-base, with the hopes of inspiring and 
+						assisting others on their own NLP endeavors.
+					</p>
+					<p>
+						<img src="images/hf-movie-competition.png", width="100%">
+					</p>
+
+					<hr class="major"/>
+					<h2>TLDR:</h2>
+					<ol>
+						<li>Generated embeddings using flan-t5-xxl, flan-t5-xl using this file <a
+								href="https://github.com/zayedupal/Hugging_Face_Movie_Genre_Prediction_Public/blob/main/HF_movie_genre_flan_t5_embedding_generation.ipynb">HF_movie_genre_flan_t5_embedding_generation</a>
+						</li>
+						<li>Generated embeddings using sentence-transformer using this file <a
+								href="https://github.com/zayedupal/Hugging_Face_Movie_Genre_Prediction_Public/blob/main/HF_movie_genre_sentence_transformer_embedding_generation.ipynb">HF_movie_genre_sentence_transformer_embedding_generation</a>
+						</li>
+						<li>Classified the embeddings using Logistic Regression and then combined the predictions using
+							soft
+							voting. Here is the file: <a
+								href="https://github.com/zayedupal/Hugging_Face_Movie_Genre_Prediction_Public/blob/main/genre_prediction_embedding_prediction.py">genre_prediction_embedding_prediction</a>
+						</li>
+						<li>While running prediction, cleanup is set to False when we have the cleaned up file already.
+							If we don't have the cleaned embeddings (duplicates removed), you'll need to set cleanup
+							True and
+							also need to mention the output cleanup_csv file path.
+							Basically, we use the cleaned csv for the final prediction.</li>
+					</ol>
+					<h2>Details:</h2>
+					<h3>Basic Data Analysis:</h3>
+					<p>From the basic analysis, it was clear that the dataset was balanced, no missing values. However,
+						there
+						were duplicates based on the movie name and synopsis (discussed it later).</p>
+					<h3>Feature selection:</h3>
+					<p>I used only the synopsis first and later concatenated movie name and synopsis in a single text.
+						Combining
+						them increased the evaluation accuracy.</p>
+					<h3>Removing Duplicates:</h3>
+					<p>To remove duplicates, I used sentence-transformer to calculate the cosine similarity between
+						movie name
+						and synopsis with genre. Then I kept the most similar one.</p>
+					<h3>My approach:</h3>
+					<ul>
+						<li>I tried out different pre-trained models for generating text embeddings.</li>
+						<li>Classified those embeddings using different models (used scikit learn for easy model
+							building).</li>
+						<li>Finally, combined the predictions through soft voting (average of the predicted
+							probabilities to
+							select class) from each of those classifiers.<h4>
+								The model
+								that won the second place:</h4>
+						</li>
+						<li>Embeddings generated using - 1. <a
+								href="https://huggingface.co/sentence-transformers/sentence-t5-xxl">sentence-t5-xxl</a>,
+							2. <a href="https://huggingface.co/google/flan-t5-xxl">flan-t5-xxl</a>, 3. <a
+								href="https://huggingface.co/google/flan-t5-xl">flan-t5-xl</a>.</li>
+						<li>Model used - Logistic Regression with saga solver. All the other parameters remained at the
+							default
+							values specified by scikit-learn.<h4>The
+								model that
+								has the best private score:</h4>
+							Everything was similar to the previous model, except I also added <instructor-xl><a
+									href="https://huggingface.co/hkunlp/instructor-xl">https://huggingface.co/hkunlp/instructor-xl</a>
+								for embedding generation.<h4>Learnings and Observations
+								</h4>
+							</instructor-xl></li>
+						<li>Simple Logistic Regression worked better than Random Forest, MLP, Decision Tree, SVM.</li>
+						<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB leaderboard</a> has been a
+							huge help
+							in choosing different models for text embedding generation.</li>
+						<li><a href="https://paperswithcode.com/sota/multi-task-language-understanding-on-mmlu">MMLU</a>
+							and <a href="https://paperswithcode.com/sota/natural-language-inference-on-rte">RTE</a>
+							benchmarks also
+							helped a lot.</li>
+						<li>I used simple 70:30 split on the training data to evaluate the models. I should've done
+							k-fold for
+							better selection of the models.</li>
+					</ul>
+
+					<hr class="major" />
+
+					<h2>Links</h2>
+					<p><a href="https://huggingface.co/spaces/competitions/movie-genre-prediction">Hugging Face Competition Link</a></p>
+					<p><a href="https://github.com/zayedupal/Hugging_Face_Movie_Genre_Prediction_Public">Github Link</a></p>
+				</section>
+
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<div id="sidebar-wr"></div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/include.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
