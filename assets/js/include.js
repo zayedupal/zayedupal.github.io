@@ -1,5 +1,5 @@
 const sidebarPlaceholder = document.getElementById('sidebar-wr');
-const htm=`
+const sidebar_html=`
 		<div id="sidebar">
 			<div class="inner">
 
@@ -36,9 +36,9 @@ const htm=`
 						<p>Feel free to reach out!</p>
 						<ul class="contact">
 							<li class="icon solid fa-envelope"><a href="mailto:zayed.upal@gmail.com">zayed.upal@gmail.com</a></li>
-							<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/zayed-upal/">zayedupal</a></li>
-							<!-- <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
-							Nashville, TN 00000-0000</li> -->
+							<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/zayed-upal/">zayed-upal</a></li>
+							<li class="icon brands fa-github"><a href="https://github.com/zayedupal">zayedupal</a></li>
+							<li class="icon brands fa-stack-overflow"><a href="https://stackoverflow.com/users/1151716/zayedupal">zayedupal</a></li>						
 						</ul>
 					</section>
 
@@ -49,11 +49,17 @@ const htm=`
 
 			</div>
 		</div>`
-const fetchSidebarContent = async () => {
-//   const response = await fetch('sidebar.html');
-//   const sidebarHTML = await response.text();
 
-  sidebarPlaceholder.innerHTML = htm;
+const headerIconPlaceholder = document.getElementById('header-icons');
+const header_icon_html=`<ul class="icons">
+<li><a href="mailto:zayed.upal@gmail.com" class="icon solid fa-envelope"><span class="label">Gmail</span></a></li>
+<li><a href="https://www.linkedin.com/in/zayed-upal/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+<li><a href="https://github.com/zayedupal" class="icon brands fa-github"><span class="label">Github</span></a></li>
+<li><a href="https://stackoverflow.com/users/1151716/zayedupal" class="icon brands fa-stack-overflow"><span class="label">Github</span></a></li>
+</ul>`
+const fetchReusableContent = async () => {
+  sidebarPlaceholder.innerHTML = sidebar_html;
+  headerIconPlaceholder.innerHTML = header_icon_html;
 };
 
-fetchSidebarContent();
+fetchReusableContent();
