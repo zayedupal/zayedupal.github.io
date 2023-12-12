@@ -10,7 +10,6 @@ const sidebar_html=`
 						</header>
 						<ul>
 							<li><a href="index.html">Homepage</a></li>
-							<!-- <li><a href="generic.html">Generic</a></li> -->
 							<li>
 								<span class="opener">Data Science Projects</span>
 								<ul>
@@ -25,6 +24,7 @@ const sidebar_html=`
 									<li><a href="projects_GD_Unity_minimap.html">Unity Minimap</a></li>
 								</ul>
 							</li>
+							<li><a href="resume.html">Resume</a></li>
 						</ul>
 					</nav>
 
