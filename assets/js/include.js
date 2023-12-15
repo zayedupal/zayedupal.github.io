@@ -14,6 +14,7 @@ const sidebar_html=`
 								<span class="opener">Data Science Projects</span>
 								<ul>
 									<li><a href="projects_DS_gads_looker.html">Google Ads Dashboard in Looker Studio</a></li>
+									<li><a href="projects_DS_LLM_Cover_letter.html">Cover Letter Generator using Large Language Models</a></li>
 									<li><a href="projects_DS_KW_Clustering.html">Keyword Clustering</a></li>
 									<li><a href="projects_DS_hf_movie_genre.html">Hugging Face Competition: Movie Genre Prediction</a></li>
 								</ul>
